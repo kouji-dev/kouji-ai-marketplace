@@ -23,7 +23,7 @@ The templates ship with this plugin:
    **In the same question, ask whether they want an overview page** (see `pages-and-state`) and wait for the
    answer before creating any page.
 2. **Copy the app template** to `design/<app>/`. Then, in every file:
-   - tags `app-…` → `<prefix>-…` (`K.define('app-…'`, `<app-…>` in pages, the prefix comment in `components.js`);
+   - tags `app-…` → `<prefix>-…` (`ds.define('app-…'`, `<app-…>` in pages, the prefix comment in `components.js`);
    - storage keys `'app:…'` → `'<app>:…'` in `shared/store.js`;
    - `App ·` → the app's name in page titles.
 3. **If `design/design-system/` exists** (or the person wants one — copy

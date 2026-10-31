@@ -8,7 +8,7 @@
   document.addEventListener('DOMContentLoaded', function () {
     var dc = document.querySelector('x-dc');
     if (dc && /\{\{[^}]+\}\}/.test(dc.innerHTML)) {
-      console.warn('[kouji] This page has {{holes}}: they only fill on the canvas. Keep pages static and put behaviour in a component.');
+      console.warn('[ds] This page has {{holes}}: they only fill on the canvas. Keep pages static and put behaviour in a component.');
     }
   });
 })();

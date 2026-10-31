@@ -1,10 +1,10 @@
 // <app-greeting> — a page's live text from shared state, so the page itself stays static markup.
-(self.KOUJI = self.KOUJI || []).push(function (K) {
-  class Greeting extends K.Base {
+(self.DS = self.DS || []).push(function (ds) {
+  class Greeting extends ds.Base {
     render() {
-      const app = K.use('app');
-      return K.html`<p style="margin: 0">Hello, ${app ? app.user.value.name : '…'}.</p>`;
+      const app = ds.use('app');
+      return ds.html`<p style="margin: 0">Hello, ${app ? app.user.value.name : '…'}.</p>`;
     }
   }
-  K.define('app-greeting', Greeting);
+  ds.define('app-greeting', Greeting);
 });

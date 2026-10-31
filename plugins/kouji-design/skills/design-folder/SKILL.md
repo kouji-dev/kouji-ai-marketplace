@@ -29,7 +29,7 @@ design/
 │   │   ├── button.js           # <ds-button>, a classic script
 │   │   └── button.css          # its styles, fetched into its shadow root
 │   ├── components.js           # lists every design-system component
-│   ├── base.js                 # the kit: Preact signals bundled + K (Base, html, css, provide/use, persisted, load)
+│   ├── base.js                 # the kit: Preact signals bundled + the DS global (Base, html, css, provide/use, persisted, load)
 │   ├── tokens.css, base.css    # shared tokens, page reset and layout helpers
 │   ├── docs.css                # layout of the design system's own pages
 │   └── support.js              # local stand-in for the canvas runtime (the canvas ignores it)
@@ -66,7 +66,7 @@ design/
   `{{holes}}`, `<sc-if>` or `<sc-for>` (they only render on the canvas) and no `<script>` in the body. All
   behaviour and live text lives in components.
 - **Components are classic scripts,** registered through the kit's queue, never ES modules: the canvas can't
-  resolve module imports. Each loads its own `.css` with `K.css(path)`.
+  resolve module imports. Each loads its own `.css` with `ds.css(path)`.
 - **No network.** No CDN, no remote image, no API. The only library, Preact signals, is bundled in `base.js`.
   Google Fonts stylesheets are the one exception the canvas allows.
 - **Names:** folders and files are kebab-case. Pages are `index.dc.html` and `<name>.page.dc.html`. A component

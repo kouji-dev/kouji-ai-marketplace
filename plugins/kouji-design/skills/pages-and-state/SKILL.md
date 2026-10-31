@@ -1,6 +1,6 @@
 ---
 name: pages-and-state
-description: How pages, navigation and state work in design/ — index.dc.html plus <name>.page.dc.html artboards that run locally and on a Claude Design canvas, the optional overview page with screenshots (ask first), the design system's own documentation pages, and shared state with K.provide/K.use and persisted signals. Use when adding or changing a page, wiring navigation or state.
+description: How pages, navigation and state work in design/ — index.dc.html plus <name>.page.dc.html artboards that run locally and on a Claude Design canvas, the optional overview page with screenshots (ask first), the design system's own documentation pages, and shared state with ds.provide/ds.use and persisted signals. Use when adding or changing a page, wiring navigation or state.
 ---
 
 # Pages and state
@@ -82,20 +82,20 @@ renderVals() { return {}; }
 - **Shared state lives in `shared/store.js`,** provided by name:
 
 ```js
-(self.KOUJI = self.KOUJI || []).push(function (K) {
-  const cart = K.persisted('shop:cart', []);
-  K.provide('app', {
-    user: K.persisted('shop:user', { name: 'Ada' }),
+(self.DS = self.DS || []).push(function (ds) {
+  const cart = ds.persisted('shop:cart', []);
+  ds.provide('app', {
+    user: ds.persisted('shop:user', { name: 'Ada' }),
     cart,
-    total: K.computed(() => cart.value.reduce((s, i) => s + i.price * i.qty, 0)),
-    filter: K.signal('all'),                      // resets on each page load
+    total: ds.computed(() => cart.value.reduce((s, i) => s + i.price * i.qty, 0)),
+    filter: ds.signal('all'),                      // resets on each page load
   });
 });
 ```
 
-- **Components read it with `K.use('app')`** inside `render()`. It's reactive: a component that rendered before
+- **Components read it with `ds.use('app')`** inside `render()`. It's reactive: a component that rendered before
   the store loaded renders again when it arrives.
-- **`K.persisted(key, initial)`** keeps a value in `sessionStorage`: the next page sees it, and on the canvas,
+- **`ds.persisted(key, initial)`** keeps a value in `sessionStorage`: the next page sees it, and on the canvas,
   where every artboard stays loaded, the other artboards update live. Prefix keys with the app name
   (`shop:cart`) so two apps don't share them.
 - Update by assigning a new value (`app.cart.value = [...app.cart.value, item]`), never by mutating in place.

@@ -68,5 +68,5 @@ Serve the `templates/` folder (`python3 -m http.server`) and open `app/index.dc.
 
 The canvas runs each artboard in its own frame, with its own runtime: scripts in any order, no ES module imports,
 no network. So pages are static markup inside `<x-dc>`, components are classic scripts queued with
-`(self.KOUJI ||= []).push(K => …)`, styles are fetched with `K.css()`, and every path is relative to the page
+`(self.DS ||= []).push(ds => …)`, styles are fetched with `ds.css()`, and every path is relative to the page
 (every page sits one level under `design/`). Each of these was tested on a canvas.
