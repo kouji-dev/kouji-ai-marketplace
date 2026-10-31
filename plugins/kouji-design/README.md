@@ -7,9 +7,13 @@ or Edge: custom elements with their own CSS file, pages as `<name>.page.html`, s
 ```
 design/
 ├── design-system/            # optional: what several apps share (tokens, generic components, base.js, deps.js)
+│   ├── index.html            # lists the design system's element pages
+│   └── <element>.page.html   # colors, typography, code, buttons… — one short page each
 └── <app>/
-    ├── index.html            # entry + list of pages
+    ├── index.html            # the app's entry page
     ├── <name>.page.html
+    ├── overview.page.html    # optional (Claude asks first): every page as a card with a screenshot
+    ├── screenshots/          # PNGs for the overview, from scripts/screenshots.mjs
     └── shared/
         ├── components/<name>.js + <name>.css
         └── deps.js, base.js, store.js, tokens.css, base.css, components.js
@@ -45,6 +49,11 @@ The first two lines let Claude Code install the three Anthropic plugins this one
 
 ## Templates
 
-`templates/app/` is a working app (home page, a second page sharing state, two reference components);
-`templates/design-system/` is the shared level. Serve the folder that contains them
-(`python3 -m http.server`) and open `app/index.html` to see them run.
+- `templates/app/` — a working app: home page, a second page sharing state, two reference components.
+- `templates/design-system/` — the shared level with its own pages: an index listing colors, typography, code and
+  buttons.
+- `templates/overview/` — the optional page listing every page of an app with screenshots.
+
+`scripts/screenshots.mjs <design-dir> <folder>` writes a PNG per page into `<folder>/screenshots/` (needs
+Playwright). Serve the `templates/` folder (`python3 -m http.server`) and open `app/index.html` or
+`design-system/index.html` to see them run.

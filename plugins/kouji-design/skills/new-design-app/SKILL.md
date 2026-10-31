@@ -10,13 +10,18 @@ The templates ship with this plugin:
 - `${CLAUDE_PLUGIN_ROOT}/templates/app/` — a working standalone app: `index.html`, `profile.page.html`, and
   `shared/` with `deps.js`, `base.js`, `store.js`, `tokens.css`, `base.css`, `components.js` and two reference
   components (`button`, `user-card`).
-- `${CLAUDE_PLUGIN_ROOT}/templates/design-system/` — the shared level: `deps.js`, `base.js`, tokens, base styles
-  and `components/button.*` defining `<ds-button>`.
+- `${CLAUDE_PLUGIN_ROOT}/templates/design-system/` — the shared level: `deps.js`, `base.js`, tokens, base styles,
+  `components/button.*` defining `<ds-button>`, and its own pages: `index.html` listing `colors`, `typography`,
+  `code` and `buttons` pages, styled by `docs.css`.
+- `${CLAUDE_PLUGIN_ROOT}/templates/overview/overview.page.html` — the optional page listing every page of an app
+  with screenshots.
 
 ## Steps
 
 1. **Decide the names** with the person if they haven't said: the app folder (kebab-case, e.g. `shop`) and its tag
    prefix (short, e.g. `shop`). Check `design/` for existing apps and for `design/design-system/`.
+   **In the same question, ask whether they want an overview page** (see `pages-and-state`) and wait for the
+   answer before creating any page.
 2. **Copy the app template** to `design/<app>/`. Replace the `app-` tag prefix with `<prefix>-` in every file
    (`define('app-…'`, `<app-…>` in pages and CSS comments), and `App ·` in page titles with the app's name.
 3. **If `design/design-system/` exists** (or the person wants one — copy
@@ -27,9 +32,13 @@ The templates ship with this plugin:
    - Make `shared/tokens.css` hold only overrides, and link `../design-system/tokens.css` and
      `../design-system/base.css` before it in every page head.
    - Start `shared/components.js` with `import '../../design-system/components.js';`.
+   - In the design system, keep its pages in step: a new `ds-` component or token family gets its
+     `<element>.page.html` and a card in `design/design-system/index.html`.
 4. **Keep or replace the examples.** `profile.page.html` and `user-card` show cross-page state; delete them once
    the app has real pages, and remove their links from `index.html`.
-5. **Run it:** serve `design/` (`npx serve design` or `python3 -m http.server -d design`), open
+5. **Overview, if they said yes:** copy the overview template into `design/<app>/`, one card per page, then run
+   the screenshot script for the app (see `pages-and-state`).
+6. **Run it:** serve `design/` (`npx serve design` or `python3 -m http.server -d design`), open
    `/<app>/index.html` in Chrome or Edge, check the console is clean, click through every page.
 
 ## When a second app arrives

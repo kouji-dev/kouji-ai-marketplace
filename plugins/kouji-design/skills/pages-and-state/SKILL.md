@@ -1,13 +1,28 @@
 ---
 name: pages-and-state
-description: How pages, navigation and state work in a design/ app — index.html plus <name>.page.html files, the shared head, page scripts, the signals store persisted across pages, and pinning the one CDN dependency. Use when adding or changing a page, wiring navigation or state, or touching deps.js.
+description: How pages, navigation and state work in design/ — index.html plus <name>.page.html files, the optional overview page with screenshots (ask first), the design system's own documentation pages, the signals store persisted across pages, and the one pinned CDN dependency. Use when adding or changing a page, wiring navigation or state, or touching deps.js.
 ---
 
 # Pages and state
 
+## First, ask about the overview page
+
+Before creating the pages of an app — a new app, or the first pages in an existing one that has no overview
+yet — ask the person, and wait for the answer:
+
+> Do you want an overview page for this app — `overview.page.html`, listing every page as a card with a
+> screenshot? It's separate from `index.html`, which stays the app's home page.
+
+- **Yes:** copy `${CLAUDE_PLUGIN_ROOT}/templates/overview/overview.page.html` into `design/<app>/`, give it
+  one card per page (title, file name, `screenshots/<name>.png`), then generate the screenshots (below). Every
+  page added later gets a card and a fresh screenshot in the same change. Link it from `index.html` only if the
+  person wants it reachable from the app itself.
+- **No:** don't create it, and don't ask again for that app unless the person brings it up.
+
 ## Pages
 
-- `design/<app>/index.html` always exists. It is the app's entry and links every page of the app.
+- `design/<app>/index.html` always exists. It is the app's entry page — what the real app opens on — and links
+  onwards the way the real app would.
 - Every other page is `design/<app>/<name>.page.html` (kebab-case): `checkout.page.html`, `order-detail.page.html`.
 - A page is a complete HTML document that opens on its own. Navigation is plain `<a href="checkout.page.html">`.
 - Every page has the same head, in this order:
@@ -31,6 +46,30 @@ description: How pages, navigation and state work in a design/ app — index.htm
 - Page markup uses components and the layout helpers from `base.css` (`.page`, `.stack`, `.row`); page-specific
   CSS goes in a `<style>` in the page head, using tokens only.
 - Page logic is one `<script type="module">` at the end of `<body>`, importing from `./shared/…`.
+
+## Screenshots
+
+`${CLAUDE_PLUGIN_ROOT}/scripts/screenshots.mjs` serves `design/`, opens `index.html` and every `*.page.html` of one
+folder (skipping the overview) and writes `<folder>/screenshots/<name>.png`:
+
+```
+node ${CLAUDE_PLUGIN_ROOT}/scripts/screenshots.mjs design <app>
+node ${CLAUDE_PLUGIN_ROOT}/scripts/screenshots.mjs design design-system
+```
+
+It needs Playwright in the project (`npm i -D playwright && npx playwright install chromium`); if it isn't
+installed, ask before installing it. It exits with an error when a page throws — fix the page, then rerun.
+
+## Design-system pages
+
+`design/design-system/` follows the same page rules, as documentation:
+
+- `index.html` lists every element page as a card, grouped: **Foundations** (colors, typography, spacing, code,
+  icons…) then **Components** (one page per `ds-` component).
+- Each `<element>.page.html` is short: a one-line purpose, the element shown live in each variant and state, and a
+  table of the tokens or attributes behind it. Token values are read from the live CSS, not typed in, so the page
+  can't drift from `tokens.css`.
+- These pages also link `docs.css`, which only the design system's own pages use.
 
 ## State
 

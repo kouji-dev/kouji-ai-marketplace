@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Design system · Typography</title>
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="base.css">
+  <link rel="stylesheet" href="docs.css">
+  <style>
+    .type-row { display: grid; grid-template-columns: 160px minmax(0, 1fr); gap: var(--sp-4); align-items: baseline; padding: var(--sp-3) 0; border-bottom: 1px solid var(--line); }
+    .type-row code { color: var(--ink-3); }
+  </style>
+</head>
+<body>
+  <main class="doc">
+    <header>
+      <a href="index.html">← Design system</a>
+      <h1>Typography</h1>
+      <p>Two families: <code>--font-ui</code> for everything you read, <code>--font-mono</code> for code, keys and numbers that must line up.</p>
+    </header>
+
+    <h2>Families</h2>
+    <div class="type-row"><code>--font-ui</code><span style="font: 500 20px/1.3 var(--font-ui)">The quick brown fox jumps over the lazy dog</span></div>
+    <div class="type-row"><code>--font-mono</code><span style="font: 500 18px/1.3 var(--font-mono)">const fox = jump(over.lazyDog);</span></div>
+
+    <h2>Scale</h2>
+    <div class="type-row"><code>Title · 32 / 600</code><span style="font: 600 32px/1.15 var(--font-ui); letter-spacing: -.02em">Page title</span></div>
+    <div class="type-row"><code>Heading · 20 / 600</code><span style="font: 600 20px/1.3 var(--font-ui)">Section heading</span></div>
+    <div class="type-row"><code>Body · 15 / 400</code><span style="font: 400 15px/1.5 var(--font-ui)">Body text for paragraphs, descriptions and form help.</span></div>
+    <div class="type-row"><code>Label · 13 / 500</code><span style="font: 500 13px/1.4 var(--font-ui); color: var(--ink-2)">Field label, table header</span></div>
+    <div class="type-row"><code>Caption · 12 / 400</code><span style="font: 400 12px/1.4 var(--font-ui); color: var(--ink-3)">Caption, timestamp, hint</span></div>
+  </main>
+</body>
+</html>

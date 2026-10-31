@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Design system · Buttons</title>
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="base.css">
+  <link rel="stylesheet" href="docs.css">
+  <script type="module" src="components.js"></script>
+</head>
+<body>
+  <main class="doc">
+    <header>
+      <a href="index.html">← Design system</a>
+      <h1>Buttons</h1>
+      <p><code>&lt;ds-button&gt;</code> runs an action. Use one primary button per view; everything else is ghost.</p>
+    </header>
+
+    <h2>Variants</h2>
+    <div class="specimen">
+      <ds-button>Primary</ds-button>
+      <ds-button variant="ghost">Ghost</ds-button>
+    </div>
+
+    <h2>States</h2>
+    <div class="specimen">
+      <ds-button disabled>Disabled</ds-button>
+      <ds-button variant="ghost" disabled>Disabled ghost</ds-button>
+    </div>
+
+    <h2>API</h2>
+    <table class="tokens">
+      <tr><th>Attribute</th><th>Values</th><th>Default</th></tr>
+      <tr><td><code>variant</code></td><td><code>primary</code> · <code>ghost</code></td><td><code>primary</code></td></tr>
+      <tr><td><code>disabled</code></td><td>present or absent</td><td>absent</td></tr>
+      <tr><td>slot</td><td>the label</td><td>—</td></tr>
+      <tr><td>part</td><td><code>button</code>, the inner element</td><td>—</td></tr>
+    </table>
+  </main>
+</body>
+</html>

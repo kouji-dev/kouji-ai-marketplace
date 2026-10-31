@@ -14,6 +14,10 @@ locally, the files land here.
 ```
 design/
 ├── design-system/              # OPTIONAL: only when several apps share one design system
+│   ├── index.html              # REQUIRED here: lists every element page below, grouped (foundations, components)
+│   ├── colors.page.html        # one concise page per element: what it is, shown live, the tokens behind it
+│   ├── typography.page.html    #   (colors, typography, code, spacing, icons, buttons, inputs, cards, …)
+│   ├── buttons.page.html
 │   ├── components/
 │   │   ├── button.js           # <ds-button>
 │   │   └── button.css
@@ -21,10 +25,14 @@ design/
 │   ├── deps.js                 # the one place CDN imports live (pinned versions)
 │   ├── base.js                 # Base class, html``, define()
 │   ├── tokens.css              # shared tokens
-│   └── base.css                # page reset and layout helpers
+│   ├── base.css                # page reset and layout helpers
+│   ├── docs.css                # layout of the design system's own pages (apps never load it)
+│   └── screenshots/            # optional: PNGs of its pages, from the screenshot script
 ├── <app>/                      # one folder per app: shop, admin, mobile, …
-│   ├── index.html              # REQUIRED: the app's entry and the list of its pages
+│   ├── index.html              # REQUIRED: the app's entry page (its home), as the real app would open
 │   ├── <name>.page.html        # one file per page: checkout.page.html, settings.page.html
+│   ├── overview.page.html      # OPTIONAL, only if the person said yes: every page as a card with a screenshot
+│   ├── screenshots/            # the PNGs the overview shows, one per page
 │   └── shared/                 # this app's own system and logic, kept FLAT
 │       ├── components/
 │       │   ├── <name>.js       # one web component per file, no sub-folders
@@ -66,7 +74,12 @@ design/
 - **Target browsers:** current Chrome and Edge. CSS module scripts don't work in Safari; that's accepted.
 - **Serve, don't double-click:** ES modules need http. Serve the `design/` folder itself (so `../design-system/`
   resolves) with `npx serve design` or `python3 -m http.server -d design`, then open `/<app>/index.html`.
-- **index.html lists every page** of the app, so it doubles as the map of the design.
+- **Ask before building an app's pages** whether the person wants an overview page — `overview.page.html`,
+  every page as a card with a screenshot. It is not the index: `index.html` stays the app's entry page. Wait for
+  the answer before creating pages, and build the overview only on a yes (see `pages-and-state`).
+- **The design system documents itself.** Every token family and every `ds-` component gets a short
+  `<element>.page.html` in `design/design-system/`, and `design/design-system/index.html` lists them all. Adding
+  or changing an element updates its page and the index in the same change.
 - **Verify in the browser** before calling a design done: open each page you touched, check the console has no
   errors, click what you built.
 

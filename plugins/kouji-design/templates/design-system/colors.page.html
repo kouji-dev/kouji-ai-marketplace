@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Design system · Colors</title>
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="base.css">
+  <link rel="stylesheet" href="docs.css">
+  <script type="module" src="components.js"></script>
+</head>
+<body>
+  <main class="doc">
+    <header>
+      <a href="index.html">← Design system</a>
+      <h1>Colors</h1>
+      <p>Every colour is a token in <code>tokens.css</code>. Components and pages use the tokens, never a raw value. Values below are read live from the page, so they can't drift.</p>
+    </header>
+
+    <!-- data-token rows: the swatch and value fill in from the live CSS. -->
+    <h2>Surfaces</h2>
+    <table class="tokens">
+      <tr><th>Swatch</th><th>Token</th><th>Use</th><th>Value</th></tr>
+      <tr data-token="--bg"><td><div class="swatch"></div></td><td><code>--bg</code></td><td>Page background</td><td><code></code></td></tr>
+      <tr data-token="--panel"><td><div class="swatch"></div></td><td><code>--panel</code></td><td>Cards, panels</td><td><code></code></td></tr>
+      <tr data-token="--panel-2"><td><div class="swatch"></div></td><td><code>--panel-2</code></td><td>Raised or nested surfaces</td><td><code></code></td></tr>
+      <tr data-token="--line"><td><div class="swatch"></div></td><td><code>--line</code></td><td>Borders and dividers</td><td><code></code></td></tr>
+    </table>
+
+    <h2>Ink</h2>
+    <table class="tokens">
+      <tr><th>Swatch</th><th>Token</th><th>Use</th><th>Value</th></tr>
+      <tr data-token="--ink"><td><div class="swatch"></div></td><td><code>--ink</code></td><td>Primary text</td><td><code></code></td></tr>
+      <tr data-token="--ink-2"><td><div class="swatch"></div></td><td><code>--ink-2</code></td><td>Secondary text</td><td><code></code></td></tr>
+      <tr data-token="--ink-3"><td><div class="swatch"></div></td><td><code>--ink-3</code></td><td>Labels, hints</td><td><code></code></td></tr>
+    </table>
+
+    <h2>Accent and states</h2>
+    <table class="tokens">
+      <tr><th>Swatch</th><th>Token</th><th>Use</th><th>Value</th></tr>
+      <tr data-token="--accent"><td><div class="swatch"></div></td><td><code>--accent</code></td><td>Primary actions, focus</td><td><code></code></td></tr>
+      <tr data-token="--accent-ink"><td><div class="swatch"></div></td><td><code>--accent-ink</code></td><td>Accent text and links</td><td><code></code></td></tr>
+      <tr data-token="--ok"><td><div class="swatch"></div></td><td><code>--ok</code></td><td>Success</td><td><code></code></td></tr>
+      <tr data-token="--danger"><td><div class="swatch"></div></td><td><code>--danger</code></td><td>Errors, destructive actions</td><td><code></code></td></tr>
+    </table>
+
+    <h2>Theme</h2>
+    <div class="specimen"><ds-button variant="ghost" id="theme">Switch to light</ds-button></div>
+  </main>
+
+  <script type="module">
+    const root = document.documentElement;
+    function paint() {
+      const css = getComputedStyle(root);
+      for (const row of document.querySelectorAll('[data-token]')) {
+        const name = row.dataset.token;
+        row.querySelector('.swatch').style.background = `var(${name})`;
+        row.querySelector('td:last-child code').textContent = css.getPropertyValue(name).trim();
+      }
+    }
+    const btn = document.getElementById('theme');
+    btn.addEventListener('click', () => {
+      root.dataset.theme = root.dataset.theme === 'light' ? 'dark' : 'light';
+      btn.textContent = `Switch to ${root.dataset.theme === 'light' ? 'dark' : 'light'}`;
+      paint();
+    });
+    paint();
+  </script>
+</body>
+</html>
