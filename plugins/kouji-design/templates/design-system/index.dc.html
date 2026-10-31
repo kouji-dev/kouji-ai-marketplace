@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Design system</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="../design-system/tokens.css">
+<link rel="stylesheet" href="../design-system/base.css">
+<link rel="stylesheet" href="../design-system/docs.css">
+<script src="../design-system/base.js"></script>
+<script src="../design-system/components.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+
+</style>
+</helmet>
+<main class="doc">
+<header>
+<h1>Design system</h1>
+<p>Tokens and components shared by every app in this project. One page per element; each shows it live and names the tokens behind it.</p>
+</header>
+<h2>Foundations</h2>
+<nav class="cards" aria-label="Foundations">
+<a class="card" href="colors.page.dc.html"><b>Colors</b><span>Surfaces, ink, accent and states, in both themes.</span></a>
+<a class="card" href="typography.page.dc.html"><b>Typography</b><span>Font families, sizes and weights for UI text.</span></a>
+<a class="card" href="code.page.dc.html"><b>Code</b><span>Inline code, code blocks and keyboard keys.</span></a>
+</nav>
+<h2>Components</h2>
+<nav class="cards" aria-label="Components">
+<a class="card" href="buttons.page.dc.html"><b>Buttons</b><span>&lt;ds-button&gt; — variants and states.</span></a>
+</nav>
+</main>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":700}}'>
+class Component extends DCLogic {
+renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

@@ -1,5 +1,5 @@
-/* Design tokens shared by every app in design/. Custom properties cross the shadow-DOM boundary, so components read these directly.
-   An app links this file first, then its own shared/tokens.css for overrides only. */
+/* Design tokens shared by every app in design/. Custom properties cross the shadow-DOM boundary, so components
+   read them directly. An app links this file first, then its own shared/tokens.css for overrides only. */
 :root {
   color-scheme: dark light;
   --font-ui: system-ui, -apple-system, 'Segoe UI', sans-serif;
@@ -11,11 +11,11 @@
   --line: #2a2b36;
   --ink: #ececf1;
   --ink-2: #b4b5c2;
-  --ink-3: #7c7d8c;
+  --ink-3: #8a8b99;
   --accent: #a855f7;
   --accent-ink: #c4a1ff;
   --on-accent: #0b0b10;
-  --danger: #e5534b;
+  --danger: #ef6a62;
   --ok: #57c98a;
 
   --r-sm: 6px;
@@ -37,6 +37,6 @@
   --line: #e2dfd8;
   --ink: #16161b;
   --ink-2: #44454f;
-  --ink-3: #6d6e7a;
+  --ink-3: #62636e;
   --accent-ink: #7c3aed;
 }

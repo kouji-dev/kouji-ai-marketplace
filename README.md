@@ -5,7 +5,7 @@ skill here once and every project that uses the marketplace gets it at its next 
 
 | Plugin | What it does |
 | :- | :- |
-| [`kouji-design`](plugins/kouji-design) | Every design lives in the project's `design/` folder as a native app: web components with their own CSS, pages as `*.page.html`, state with Preact signals. Brings in Anthropic's `design`, `engineering` and `frontend-design` plugins. |
+| [`kouji-design`](plugins/kouji-design) | Every design lives in the project's `design/` folder and runs both locally and on a Claude Design canvas: `.dc.html` pages, web components with their own CSS, Preact signals, no build step. Brings in Anthropic's `design`, `engineering` and `frontend-design` plugins. |
 
 ## Install in Claude Code
 
@@ -24,7 +24,8 @@ Installing `kouji-design` installs `design@knowledge-work-plugins`, `engineering
 `kouji-design` installs but doesn't load, and Claude Code names the missing dependency.
 
 The skills then show up as `/kouji-design:design-folder`, `/kouji-design:web-components`,
-`/kouji-design:pages-and-state`, `/kouji-design:new-design-app` and `/kouji-design:import-design`, and Claude uses
+`/kouji-design:pages-and-state`, `/kouji-design:new-design-app`, `/kouji-design:canvas-sync` and
+`/kouji-design:import-design`, and Claude uses
 them on its own when you do design work.
 
 ## Use it in a project

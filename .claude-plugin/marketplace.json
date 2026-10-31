@@ -16,9 +16,16 @@
     {
       "name": "kouji-design",
       "source": "./plugins/kouji-design",
-      "description": "Every design lives in the project's design/ folder as a native app: web components with their own CSS, pages as *.page.html, state with Preact signals. Brings in Anthropic's design, engineering and frontend-design plugins.",
+      "description": "Every design lives in the project's design/ folder and runs both locally and on a Claude Design canvas: .dc.html pages, web components with their own CSS, Preact signals, no build step. Brings in Anthropic's design, engineering and frontend-design plugins.",
       "category": "design",
-      "keywords": ["design", "web-components", "prototype", "design-system", "signals"]
+      "keywords": [
+        "design",
+        "web-components",
+        "prototype",
+        "design-system",
+        "signals",
+        "claude-design"
+      ]
     }
   ]
 }

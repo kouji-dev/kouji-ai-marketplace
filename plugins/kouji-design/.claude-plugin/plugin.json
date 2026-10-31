@@ -1,7 +1,7 @@
 {
   "name": "kouji-design",
   "displayName": "Kouji Design",
-  "description": "Every design lives in the project's design/ folder as a native app: web components with their own CSS, pages as *.page.html, state with Preact signals.",
+  "description": "Every design lives in the project's design/ folder and runs both locally and on a Claude Design canvas: .dc.html pages, web components with their own CSS, Preact signals, no build step.",
   "author": {
     "name": "Kouji",
     "url": "https://github.com/kouji-dev"
@@ -13,7 +13,8 @@
     "web-components",
     "prototype",
     "design-system",
-    "signals"
+    "signals",
+    "claude-design"
   ],
   "dependencies": [
     "design@knowledge-work-plugins",

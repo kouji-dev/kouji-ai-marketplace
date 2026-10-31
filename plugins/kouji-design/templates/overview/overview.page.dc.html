@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>App · All pages</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="shared/tokens.css">
+<link rel="stylesheet" href="shared/base.css">
+<script src="shared/base.js"></script>
+<script src="shared/store.js"></script>
+<script src="shared/components.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:var(--sp-4)}
+.card{display:flex;flex-direction:column;gap:var(--sp-2);padding:var(--sp-3);border:1px solid var(--line);border-radius:var(--r-lg);background:var(--panel);color:var(--ink);text-decoration:none}
+.card:hover{border-color:var(--ink-3)}
+.card img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top;border-radius:var(--r-md);border:1px solid var(--line);background:var(--panel-2)}
+.card b{font-size:15px}
+.card code{font:12px/1.3 var(--font-mono);color:var(--ink-3)}
+.meta{color:var(--ink-3);font-size:13px;margin:0}
+</style>
+</helmet>
+<main class="page stack">
+<h1>All pages</h1>
+<p class="meta">Every page of this app. Screenshots are in <code>screenshots/</code>; refresh them after a change with the plugin's screenshot script.</p>
+<nav class="cards" aria-label="All pages">
+<a class="card" href="index.dc.html"><img src="screenshots/index.png" alt="Home, screenshot"><b>Home</b><code>index.dc.html</code></a>
+<a class="card" href="profile.page.dc.html"><img src="screenshots/profile.png" alt="Profile, screenshot"><b>Profile</b><code>profile.page.dc.html</code></a>
+</nav>
+</main>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":700}}'>
+class Component extends DCLogic {
+renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 // Screenshots every page of one folder in design/ (an app, or design-system) into <folder>/screenshots/<page>.png,
-// for the overview page and the design-system index.
+// for an app's overview page.
 //
 //   node screenshots.mjs <design-dir> <folder> [--width 1440] [--height 900]
 //   node screenshots.mjs design shop
 //
-// Serves <design-dir> itself (so ../design-system/ resolves), opens index.html and every *.page.html in <folder>
-// except overview.page.html, and saves one viewport-sized PNG per page. Needs Playwright with Chromium:
+// Serves <design-dir> itself (so ../design-system/ resolves), opens index.dc.html and every *.page.dc.html in <folder>
+// except overview.page.dc.html (through the local support.js), and saves one viewport-sized PNG per page. Needs Playwright with Chromium:
 //   npm i -D playwright && npx playwright install chromium
 import { createServer } from 'node:http';
 import { readFile, readdir, mkdir, stat } from 'node:fs/promises';
@@ -33,8 +33,8 @@ if (!chromium) {
 
 const root = resolve(dir);
 const target = join(root, folder);
-try { await stat(join(target, 'index.html')); } catch {
-  console.error(`No index.html in ${target}. Pass the design folder and an app (or design-system) inside it.`);
+try { await stat(join(target, 'index.dc.html')); } catch {
+  console.error(`No index.dc.html in ${target}. Pass the design folder and an app (or design-system) inside it.`);
   process.exit(1);
 }
 
@@ -49,7 +49,7 @@ const server = createServer(async (req, res) => {
 await new Promise((ok) => server.listen(0, '127.0.0.1', ok));
 const origin = `http://127.0.0.1:${server.address().port}`;
 
-const pages = ['index.html', ...(await readdir(target)).filter((f) => f.endsWith('.page.html') && f !== 'overview.page.html').sort()];
+const pages = ['index.dc.html', ...(await readdir(target)).filter((f) => f.endsWith('.page.dc.html') && f !== 'overview.page.dc.html').sort()];
 await mkdir(join(target, 'screenshots'), { recursive: true });
 
 const browser = await chromium.launch();
@@ -57,7 +57,7 @@ const page = await browser.newPage({ viewport: { width, height } });
 const problems = [];
 page.on('pageerror', (e) => problems.push(e.message));
 for (const file of pages) {
-  const name = file === 'index.html' ? 'index' : file.replace(/\.page\.html$/, '');
+  const name = file === 'index.dc.html' ? 'index' : file.replace(/\.page\.dc\.html$/, '');
   await page.goto(`${origin}/${folder}/${file}`, { waitUntil: 'networkidle' });
   await page.waitForTimeout(300);
   await page.screenshot({ path: join(target, 'screenshots', name + '.png') });
