@@ -1,0 +1,42 @@
+/* Design tokens. Custom properties cross the shadow-DOM boundary, so components read these directly.
+   When the project has design/design-system/, the app imports its tokens.css instead and keeps only overrides here. */
+:root {
+  color-scheme: dark light;
+  --font-ui: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', Menlo, monospace;
+
+  --bg: #0b0b10;
+  --panel: #14151c;
+  --panel-2: #1b1c25;
+  --line: #2a2b36;
+  --ink: #ececf1;
+  --ink-2: #b4b5c2;
+  --ink-3: #7c7d8c;
+  --accent: #a855f7;
+  --accent-ink: #c4a1ff;
+  --on-accent: #0b0b10;
+  --danger: #e5534b;
+  --ok: #57c98a;
+
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 16px;
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-6: 24px;
+  --sp-8: 32px;
+  --ease: cubic-bezier(.2, .7, .2, 1);
+}
+
+:root[data-theme='light'] {
+  --bg: #f7f6f3;
+  --panel: #ffffff;
+  --panel-2: #f0eee9;
+  --line: #e2dfd8;
+  --ink: #16161b;
+  --ink-2: #44454f;
+  --ink-3: #6d6e7a;
+  --accent-ink: #7c3aed;
+}

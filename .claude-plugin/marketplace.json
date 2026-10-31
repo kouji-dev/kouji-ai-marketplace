@@ -1,0 +1,24 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "kouji",
+  "owner": {
+    "name": "Kouji",
+    "url": "https://github.com/kouji-dev"
+  },
+  "metadata": {
+    "description": "Kouji's Claude plugins: the house rules for how we design and build, shared by every project."
+  },
+  "allowCrossMarketplaceDependenciesOn": [
+    "knowledge-work-plugins",
+    "claude-plugins-official"
+  ],
+  "plugins": [
+    {
+      "name": "kouji-design",
+      "source": "./plugins/kouji-design",
+      "description": "Every design lives in the project's design/ folder as a native app: web components with their own CSS, pages as *.page.html, state with Preact signals. Brings in Anthropic's design, engineering and frontend-design plugins.",
+      "category": "design",
+      "keywords": ["design", "web-components", "prototype", "design-system", "signals"]
+    }
+  ]
+}

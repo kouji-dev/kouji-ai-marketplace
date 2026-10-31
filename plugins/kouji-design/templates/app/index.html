@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>App · Home</title>
+  <link rel="stylesheet" href="shared/tokens.css">
+  <link rel="stylesheet" href="shared/base.css">
+  <script type="module" src="shared/components.js"></script>
+</head>
+<body>
+  <main class="page stack">
+    <h1>Home</h1>
+    <app-user-card></app-user-card>
+
+    <!-- Every page of this app, so the index is also the map of the design. -->
+    <nav aria-label="Pages" class="stack">
+      <a href="profile.page.html">Profile</a>
+    </nav>
+
+    <div class="row">
+      <app-button id="count">Clicked 0 times</app-button>
+      <app-button variant="ghost" disabled>Disabled</app-button>
+    </div>
+  </main>
+
+  <!-- Page logic: page-only state stays here; state shared across pages lives in shared/store.js. -->
+  <script type="module">
+    import { signal, effect } from './shared/deps.js';
+    const clicks = signal(0);
+    const btn = document.getElementById('count');
+    btn.addEventListener('click', () => clicks.value++);
+    effect(() => { btn.textContent = `Clicked ${clicks.value} time${clicks.value === 1 ? '' : 's'}`; });
+  </script>
+</body>
+</html>

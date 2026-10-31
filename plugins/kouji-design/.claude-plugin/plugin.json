@@ -1,0 +1,23 @@
+{
+  "name": "kouji-design",
+  "displayName": "Kouji Design",
+  "description": "Every design lives in the project's design/ folder as a native app: web components with their own CSS, pages as *.page.html, state with Preact signals.",
+  "author": {
+    "name": "Kouji",
+    "url": "https://github.com/kouji-dev"
+  },
+  "homepage": "https://github.com/kouji-dev/kouji-ai-marketplace/tree/main/plugins/kouji-design",
+  "repository": "https://github.com/kouji-dev/kouji-ai-marketplace",
+  "keywords": [
+    "design",
+    "web-components",
+    "prototype",
+    "design-system",
+    "signals"
+  ],
+  "dependencies": [
+    "design@knowledge-work-plugins",
+    "engineering@knowledge-work-plugins",
+    "frontend-design@claude-plugins-official"
+  ]
+}
