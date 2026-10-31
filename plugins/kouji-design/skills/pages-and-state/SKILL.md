@@ -33,9 +33,9 @@ yet — ask the person, and wait for the answer:
 <title>Shop · Checkout</title>
 <script src="./support.js"></script>
 <link rel="stylesheet" href="../design-system/tokens.css">
-<link rel="stylesheet" href="../design-system/base.css">
 <link rel="stylesheet" href="shared/tokens.css">
-<script src="../design-system/base.js"></script>
+<link rel="stylesheet" href="../base.css">
+<script src="../base.js"></script>
 <script src="../design-system/components.js"></script>
 <script src="shared/store.js"></script>
 <script src="shared/components.js"></script>
@@ -64,8 +64,9 @@ renderVals() { return {}; }
 ```
 
 - **The head, in this order:** `./support.js` exactly as written (the canvas swaps in its runtime; locally it's
-  the stand-in in the folder), stylesheets, then scripts. Without a design system, the app's own
-  `shared/tokens.css`, `shared/base.css` and `shared/base.js` take the design system's lines.
+  the stand-in in the folder), tokens, `../base.css`, then `../base.js` and the components. `../base.js` and
+  `../base.css` are the same for every page in `design/`. Without a design system, drop the two
+  `../design-system/` lines.
 - **The body:** static markup inside `<x-dc>` — layout helpers from `base.css` (`.page`, `.stack`, `.row`),
   components, links. Page-only CSS goes in the `<helmet><style>`, using tokens only.
 - **No `{{holes}}`, `<sc-if>`, `<sc-for>` or body `<script>`:** they don't run locally. Anything live — text from

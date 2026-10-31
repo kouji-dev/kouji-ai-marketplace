@@ -19,6 +19,8 @@ works in both places — break one and the design breaks on the canvas, usually 
 
 ```
 design/
+├── base.js                     # the kit, ONCE for everything: Preact signals bundled + the DS global (Base, html, css, …)
+├── base.css                    # page reset and layout helpers, ONCE for everything (uses the page's tokens)
 ├── canvas.json                 # the canvas index: pages, artboards and their positions (scripts/canvas-index.mjs)
 ├── .canvas.json                # local only: which canvas this folder syncs with (canvas-sync)
 ├── design-system/              # OPTIONAL: only when several apps share one design system → canvas page "Design system"
@@ -29,8 +31,7 @@ design/
 │   │   ├── button.js           # <ds-button>, a classic script
 │   │   └── button.css          # its styles, fetched into its shadow root
 │   ├── components.js           # lists every design-system component
-│   ├── base.js                 # the kit: Preact signals bundled + the DS global (Base, html, css, provide/use, persisted, load)
-│   ├── tokens.css, base.css    # shared tokens, page reset and layout helpers
+│   ├── tokens.css              # the shared tokens
 │   ├── docs.css                # layout of the design system's own pages
 │   └── support.js              # local stand-in for the canvas runtime (the canvas ignores it)
 ├── <app>/                      # one folder per app: shop, admin, … → one canvas page each
@@ -43,18 +44,21 @@ design/
 │       ├── components/<name>.js + <name>.css
 │       ├── components.js       # lists this app's components
 │       ├── store.js            # the app's shared state
-│       ├── tokens.css          # the app's tokens, or only its overrides of design-system's
-│       └── base.js, base.css   # only when there is no design-system/ (the app then carries the kit itself)
+│       └── tokens.css          # the app's tokens, or only its overrides of design-system's
 └── <other-app>/…
 ```
 
-## The two levels of "shared"
+## What is shared, and where
 
-- **No design system shared between apps** → the app is self-contained: `shared/` holds the kit (`base.js`),
-  `base.css`, all tokens and every component.
-- **One design system for several apps** → `design/design-system/` holds the kit, tokens, base styles and the
-  generic components (`ds-…`). Apps don't carry `base.js` or `base.css`; their pages load the design system's,
-  then their own `shared/` for app-only components, state and token overrides.
+- **The runtime is shared by everything, once, at the top:** `design/base.js` (the kit) and `design/base.css`
+  (reset and layout helpers). Every page loads them as `../base.js` and `../base.css`. Never copy them into a
+  folder.
+- **No design system shared between apps** → each app's `shared/` holds its full tokens and every component.
+- **One design system for several apps** → `design/design-system/` holds the shared tokens and the generic
+  components (`ds-…`). An app's pages load the design system's tokens and components, then their own `shared/`
+  for app-only components, state and token overrides.
+- **The one file in every folder is `support.js`:** the canvas requires each page to load exactly
+  `./support.js` (it swaps in its runtime there), so a tiny local stand-in sits next to the pages.
 - A component a second app needs moves up to `design/design-system/components/` and becomes `ds-<name>`.
   Never copy a component between apps.
 

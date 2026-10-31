@@ -1,5 +1,5 @@
 /* The app's design tokens. Custom properties cross the shadow-DOM boundary, so components read them directly.
-   When the project has design/design-system/, link its tokens.css first and keep only this app's overrides here. */
+   With design/design-system/, its tokens.css loads first and this file keeps only the app's overrides. */
 :root {
   color-scheme: dark light;
   --font-ui: system-ui, -apple-system, 'Segoe UI', sans-serif;

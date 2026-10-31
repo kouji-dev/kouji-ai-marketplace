@@ -7,12 +7,13 @@ and each `.dc.html` file an artboard. Web components with their own CSS file, sh
 
 ```
 design/
+├── base.js, base.css         # the kit and base styles, once for every page (../base.js)
 ├── canvas.json               # the canvas index (scripts/canvas-index.mjs)
 ├── design-system/            # optional: what several apps share → canvas page "Design system"
 │   ├── index.dc.html         # lists the element pages
 │   ├── <element>.page.dc.html  # colors, typography, code, buttons… — one short page each
 │   ├── components/<name>.js + <name>.css
-│   └── base.js, components.js, tokens.css, base.css, docs.css, support.js
+│   └── components.js, tokens.css, docs.css, support.js
 └── <app>/                    # → one canvas page per app
     ├── index.dc.html         # the app's entry page
     ├── <name>.page.dc.html
@@ -21,7 +22,7 @@ design/
     ├── support.js            # local stand-in for the canvas runtime
     └── shared/
         ├── components/<name>.js + <name>.css
-        └── components.js, store.js, tokens.css (+ base.js, base.css without a design system)
+        └── components.js, store.js, tokens.css
 ```
 
 ## Install
@@ -55,6 +56,9 @@ The first two lines let Claude Code install the three Anthropic plugins this one
 
 ## Templates and scripts
 
+The templates folder is laid out like a `design/` folder:
+
+- `templates/base.js`, `templates/base.css` — the kit and base styles, shared by every page.
 - `templates/app/` — a working standalone app: home page, a second page sharing state, three components.
 - `templates/design-system/` — the shared level with its own documentation pages.
 - `templates/overview/` — the optional page listing every page of an app with screenshots.
