@@ -1,5 +1,6 @@
 {
   "name": "kouji-design",
+  "version": "1.1.0",
   "displayName": "Kouji Design",
   "description": "Every design lives in the project's design/ folder and runs both locally and on a Claude Design canvas: .dc.html pages, web components with their own CSS, Preact signals, no build step.",
   "author": {

@@ -73,6 +73,9 @@ A design-system component is the same, with `ds-` and paths that start `../desig
 
 ## Rules
 
+- **Reuse before writing:** check the app's `shared/components.js` and `design/design-system/components.js`
+  first. A component that almost fits gets a new attribute, slot or part; never a second component doing the
+  same job (`design-folder`, "Nothing twice"). Markup repeated in two places becomes one component.
 - **One element per file, flat:** `components/<name>.js` + `components/<name>.css`, no sub-folders.
 - **Tag = prefix + file name**, defined only through `ds.define()`.
 - **Styles only from tokens:** colours, radii, spacing and fonts come from `var(--…)`. No raw colour values in a

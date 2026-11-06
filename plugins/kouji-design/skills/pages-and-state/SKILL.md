@@ -19,6 +19,17 @@ yet — ask the person, and wait for the answer:
   page added later gets a card and a fresh screenshot in the same change.
 - **No:** don't create it, and don't ask again for that app unless the person brings it up.
 
+## Extend a page, or add one
+
+Before creating a page, list the app's pages (and the design system's, for a design-system element) and find the
+one whose topic the request belongs to (`design-folder`, "Nothing twice"):
+
+- **The topic has a page:** change that page. A new state, variant or alternative goes on it as a section, next to
+  what is already there; it doesn't get a file of its own.
+- **The topic is new** (a screen, a flow or an element no page shows yet): create
+  `<name>.page.dc.html`, named after the topic, never after a version (`-v2`, `-new`, `-alt`).
+- If the request would make two pages show the same thing, merge them into one and fix every link to the old one.
+
 ## A page
 
 `design/<app>/index.dc.html` always exists: the app's entry page. Every other page is

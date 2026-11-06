@@ -32,6 +32,11 @@ description: Bring a design that exists elsewhere — a Claude Design canvas in 
 | Inline `<svg>` icons | kept inline in the component that uses them |
 | Remote images and fonts | files in the app folder (`shared/` or `screenshots/`), or Google Fonts |
 
+Map onto what `design/` already has, not beside it (`design-folder`, "Nothing twice"): a screen whose topic
+already has a page is added to that page, an element an existing component covers uses that component, a colour
+an existing token holds uses that token. Screens in the source that repeat each other become one page; repeated
+blocks become one component.
+
 ## 3. Rebuild
 
 - Scaffold with `new-design-app` if `design/<app>/` doesn't exist yet (it asks about the overview page).

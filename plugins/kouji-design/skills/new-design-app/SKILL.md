@@ -24,6 +24,8 @@ The templates folder is itself a `design/` folder, so the copies land at the sam
 
 1. **Decide the names** with the person if they haven't said: the app folder (kebab-case, e.g. `shop`) and its tag
    prefix (short, e.g. `shop`). Check `design/` for existing apps and for `design/design-system/`.
+   If an existing app already covers what the person describes, add pages to it instead of starting a new app
+   (`design-folder`, "Nothing twice").
    **In the same question, ask whether they want an overview page** (see `pages-and-state`) and wait for the
    answer before creating any page.
 2. **Copy the runtime once:** if `design/base.js` or `design/base.css` doesn't exist yet, copy it from the

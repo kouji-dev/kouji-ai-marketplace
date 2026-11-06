@@ -62,6 +62,32 @@ design/
 - A component a second app needs moves up to `design/design-system/components/` and becomes `ds-<name>`.
   Never copy a component between apps.
 
+## Nothing twice
+
+Every piece of the design exists in exactly one file. No page, component, token, data or doc repeats something
+another file in `design/` already holds. Before writing anything, read what is there: the app's pages, both
+`components.js` lists, the `tokens.css` files, `store.js`.
+
+- **One page per topic: extend it, or add a page for a new topic.** A request about something a page already
+  shows (a screen, a flow, a design-system element) is added to THAT page: a new section, state or variant, or
+  alternatives side by side. A new page is created only when the topic is new: a new screen, a new flow, a new
+  element of the design. Never a near-copy beside the original (`checkout-v2.page.dc.html`,
+  `checkout-alt.page.dc.html`), and never a demo page that shows again what another page shows.
+- **A component once.** Look in `shared/components.js` and `design/design-system/components.js` first. A
+  near-match is extended with an attribute or a slot, not copied. Markup that would appear in two places
+  (two pages, or twice on one page) becomes a component used in both.
+- **A value once.** Colours, sizes, radii and fonts are defined once as tokens. An app's `tokens.css` holds only
+  what differs from the design system's, never a restated value. A page's `<helmet><style>` never redoes what
+  `base.css`, `docs.css` or a component already does.
+- **Data once.** Demo data lives in `store.js` (or `shared/data.js`), and components read it; pages don't spell out
+  the same data again.
+- **Docs once.** A design-system element is shown and explained on its own `<element>.page.dc.html` only. The
+  index and other pages link to it; they don't show it again.
+- **Say which one you did.** When you finish, tell the person which existing files you extended and which new
+  files you created, and why each new one is a new topic.
+- **Duplication already there** is merged into one place, and every file that used a copy is pointed at it in the
+  same change.
+
 ## Rules that keep both worlds working
 
 - **Every page sits exactly one level under `design/`.** So `../design-system/…` reaches the design system from

@@ -48,10 +48,10 @@ the marketplaces and the plugin:
 
 ## Staying in sync
 
-- Plugins here set no `version`, so every commit to `main` is a new version: `/plugin marketplace update kouji`
-  (or auto-update for the marketplace) brings the latest skills.
-- To hold a project on a known state instead, add a `version` to the plugin's `plugin.json` and bump it on each
-  release; users then stay on that version until it changes.
+- Each plugin has a `version` (in its `plugin.json` and its entry in `marketplace.json`), and the marketplace has
+  one in `metadata.version`. Users stay on a version until it changes, so **every change to a plugin bumps its
+  version and the marketplace's**, in the same commit.
+- `/plugin marketplace update kouji` (or auto-update for the marketplace) then brings the new skills.
 
 ## Layout
 
