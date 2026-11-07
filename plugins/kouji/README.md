@@ -1,4 +1,4 @@
-# kouji-design
+# kouji
 
 Every design for a project lives in that project's `design/` folder, and the same files run in two places:
 locally as a native web app in Chrome or Edge, and on a Claude Design canvas, where each folder is a canvas page
@@ -31,7 +31,7 @@ design/
 /plugin marketplace add anthropics/knowledge-work-plugins
 /plugin marketplace add anthropics/claude-plugins-official
 /plugin marketplace add kouji-dev/kouji-ai-marketplace
-/plugin install kouji-design@kouji
+/plugin install kouji@kouji
 ```
 
 The first two lines let Claude Code install the three Anthropic plugins this one depends on. See the

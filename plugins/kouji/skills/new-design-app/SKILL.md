@@ -1,6 +1,6 @@
 ---
 name: new-design-app
-description: Scaffold a new app in the project's design/ folder from the kouji-design template — standalone, or on top of a shared design/design-system/ — and create the design system itself (with its documentation pages) when several apps should share one. Use when starting the first design in a project or adding another app.
+description: Scaffold a new app in the project's design/ folder from the kouji template — standalone, or on top of a shared design/design-system/ — and create the design system itself (with its documentation pages) when several apps should share one. Use when starting the first design in a project or adding another app.
 ---
 
 # Start a design app

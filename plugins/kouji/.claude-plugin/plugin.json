@@ -1,13 +1,13 @@
 {
-  "name": "kouji-design",
-  "version": "1.1.0",
+  "name": "kouji",
+  "version": "1.2.0",
   "displayName": "Kouji Design",
   "description": "Every design lives in the project's design/ folder and runs both locally and on a Claude Design canvas: .dc.html pages, web components with their own CSS, Preact signals, no build step.",
   "author": {
     "name": "Kouji",
     "url": "https://github.com/kouji-dev"
   },
-  "homepage": "https://github.com/kouji-dev/kouji-ai-marketplace/tree/main/plugins/kouji-design",
+  "homepage": "https://github.com/kouji-dev/kouji-ai-marketplace/tree/main/plugins/kouji",
   "repository": "https://github.com/kouji-dev/kouji-ai-marketplace",
   "keywords": [
     "design",

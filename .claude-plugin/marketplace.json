@@ -7,7 +7,7 @@
   },
   "metadata": {
     "description": "Kouji's Claude plugins: the house rules for how we design and build, shared by every project.",
-    "version": "1.1.0"
+    "version": "1.2.0"
   },
   "allowCrossMarketplaceDependenciesOn": [
     "knowledge-work-plugins",
@@ -15,8 +15,8 @@
   ],
   "plugins": [
     {
-      "name": "kouji-design",
-      "source": "./plugins/kouji-design",
+      "name": "kouji",
+      "source": "./plugins/kouji",
       "description": "Every design lives in the project's design/ folder and runs both locally and on a Claude Design canvas: .dc.html pages, web components with their own CSS, Preact signals, no build step. Brings in Anthropic's design, engineering and frontend-design plugins.",
       "category": "design",
       "keywords": [
@@ -27,7 +27,7 @@
         "signals",
         "claude-design"
       ],
-      "version": "1.1.0"
+      "version": "1.2.0"
     }
   ]
 }
