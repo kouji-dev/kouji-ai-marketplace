@@ -1,6 +1,11 @@
-/* design/base.css — page reset and layout helpers, ONE copy for the whole design/ folder (every page loads ../base.css).
-   No colours of its own: it uses the tokens the page loads. Components never depend on it. */
+/* components/bundle.css — the design system's page-level CSS: reset, layout helpers and the values
+   tokens.json can't hold (motion, colour scheme). Every page loads it after tokens.css.
+   Component styles are not here: a shadow root doesn't see page CSS, so each sits beside its class in bundle.js.
+   No colours of its own: it uses the tokens. Components never depend on it. */
+:root { color-scheme: dark light; --ease: cubic-bezier(.2, .7, .2, 1); }
+[data-theme='light'] { color-scheme: light; }
 *, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
 html { background: var(--bg); color: var(--ink); font: 15px/1.5 var(--font-ui); -webkit-font-smoothing: antialiased; }
 body { margin: 0; min-height: 100dvh; }
 a { color: var(--accent-ink); }

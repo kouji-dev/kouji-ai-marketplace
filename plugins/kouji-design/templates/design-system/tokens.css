@@ -1,10 +1,5 @@
-/* Design tokens shared by every app in design/. Custom properties cross the shadow-DOM boundary, so components
-   read them directly. An app links this file first, then its own shared/tokens.css for overrides only. */
-:root {
-  color-scheme: dark light;
-  --font-ui: system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --font-mono: ui-monospace, 'SF Mono', Menlo, monospace;
-
+/* Starter — generated from tokens.json */
+:root, [data-theme="dark"] {
   --bg: #0b0b10;
   --panel: #14151c;
   --panel-2: #1b1c25;
@@ -17,20 +12,8 @@
   --on-accent: #0b0b10;
   --danger: #ef6a62;
   --ok: #57c98a;
-
-  --r-sm: 6px;
-  --r-md: 10px;
-  --r-lg: 16px;
-  --sp-1: 4px;
-  --sp-2: 8px;
-  --sp-3: 12px;
-  --sp-4: 16px;
-  --sp-6: 24px;
-  --sp-8: 32px;
-  --ease: cubic-bezier(.2, .7, .2, 1);
 }
-
-:root[data-theme='light'] {
+[data-theme="light"] {
   --bg: #f7f6f3;
   --panel: #ffffff;
   --panel-2: #f0eee9;
@@ -40,3 +23,19 @@
   --ink-3: #62636e;
   --accent-ink: #7c3aed;
 }
+:root {
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-6: 24px;
+  --sp-8: 32px;
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 16px;
+  --font-ui: system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, monospace;
+}
+.title { font-family: var(--font-ui); font-size: 28px; line-height: 1.2; font-weight: 700; }
+.body { font-family: var(--font-ui); font-size: 15px; line-height: 1.5; font-weight: 400; }
+.small { font-family: var(--font-ui); font-size: 12px; line-height: 1.4; font-weight: 400; }

@@ -1,0 +1,13 @@
+{
+  "v": 3,
+  "layout": "files",
+  "createdOnFiles": { "v": 1, "at": "2026-01-01T00:00:00Z" },
+  "title": "Starter",
+  "namespace": "Starter",
+  "libraries": [],
+  "sections": {},
+  "groups": [],
+  "assetGroups": {},
+  "blobs": {},
+  "docs": { "readme": "project/README.md", "sections": [] }
+}
