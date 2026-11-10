@@ -164,7 +164,8 @@ DS.expose('Starter');
 });
 
 // <ds-screens index=""> — shows one of its child <section id="…" data-title="…"> at a time, the one named by the
-// URL hash (#profile), else the first. The sections stay plain page markup, so the canvas can select and edit
+// URL hash (#profile), else the first. A hash naming an element inside a section (#install) shows that section
+// and scrolls to the element, so in-page anchors keep working. The sections stay plain page markup, so the canvas can select and edit
 // them. With `index`, a left column lists every section and the shown one scrolls on the right: an app's
 // components page. Without it, the page's own links (<a href="#profile">) switch screens: an app's screens.
 (self.DS = self.DS || []).push(function (ds) {
@@ -200,7 +201,15 @@ DS.expose('Starter');
     render() {
       this._kids.value;                                  // re-render when the sections change
       const all = [...this.children].filter((el) => el.localName === 'section' && el.id);
-      const shown = all.find((s) => s.id === hash.value) ?? all[0];
+      const h = hash.value;
+      let shown = all.find((s) => s.id === h);
+      this._target = null;
+      if (!shown && h) {
+        const el = this.querySelector('#' + CSS.escape(h));
+        shown = el && all.find((s) => s.contains(el));
+        if (shown) this._target = el;
+      }
+      shown = shown ?? all[0];
       all.forEach((s) => { s.hidden = s !== shown; });
       const nav = this.flag('index')
         ? ds.html`<nav aria-label="Sections">${all.map((s) => ds.html`<a href="#${s.id}" aria-current="${s === shown ? 'page' : 'false'}">${s.dataset.title ?? s.id}</a>`)}</nav>`
@@ -208,7 +217,10 @@ DS.expose('Starter');
       return ds.html`${nav}<div class="content" part="content"><slot></slot></div>`;
     }
 
-    rendered() { this.$('.content').scrollTop = 0; }
+    rendered() {
+      if (this._target) this._target.scrollIntoView({ block: 'start' });
+      else this.$('.content').scrollTop = 0;
+    }
   }
   ds.define('ds-screens', Screens);
 });

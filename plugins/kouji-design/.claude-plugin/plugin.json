@@ -1,6 +1,6 @@
 {
   "name": "kouji-design",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "displayName": "Kouji Design",
   "description": "Every design lives in the project's design/ folder and runs both locally and on a Claude Design canvas: an interactive page and a components page per app, every component in one bundle, a Design System artifact for tokens, Preact signals, no build step.",
   "author": {

@@ -110,7 +110,7 @@ for (const key of Object.keys(index.boards)) {
 }
 index.order = [...index.order.filter((k) => index.boards[k]), ...Object.keys(index.boards).filter((k) => !index.order.includes(k))];
 index.pages = index.pages.filter((p) => Object.values(index.boards).some((b) => b.page === p.id) || !folders.length);
-if (!index.launch?.page || !pageIds.has(index.launch.page)) index.launch = { view: 'canvas', ...(folders[0] ? { page: folders[0].name.slice(0, 40) } : {}) };
+if (!index.launch?.page || !index.pages.some((p) => p.id === index.launch.page)) index.launch = { view: 'canvas', ...(folders[0] ? { page: folders[0].name.slice(0, 40) } : {}) };
 
 await writeFile(indexPath, JSON.stringify(index, null, 2) + '\n');
 console.log(changes.length ? changes.join('\n') : 'canvas.json already up to date');
