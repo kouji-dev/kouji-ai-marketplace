@@ -1,0 +1,5 @@
+node_modules/
+videos/out/
+# A Rust tool run against the sample world's Cargo.toml builds here.
+videos/scripts/shared/worlds/sample-rust/target/
+videos/scripts/shared/worlds/sample-rust/Cargo.lock

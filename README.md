@@ -6,6 +6,7 @@ skill here once and every project that uses the marketplace gets it at its next 
 | Plugin | What it does |
 | :- | :- |
 | [`kouji-design`](plugins/kouji-design) | Every design lives in the project's `design/` folder and runs both locally and on a Claude Design canvas: `.dc.html` pages, web components with their own CSS, Preact signals, no build step. Brings in Anthropic's `design`, `engineering` and `frontend-design` plugins. |
+| [`kouji-demo-making`](plugins/kouji-demo-making) | Spoken demo videos from YAML scripts: a terminal or a web page recorded for real, with captions, a voice and sound, composed into docs clips, daily showcases and launch films. |
 
 ## Install in Claude Code
 
@@ -17,6 +18,7 @@ Run these once, in any Claude Code session:
 /plugin marketplace add anthropics/claude-plugins-official
 /plugin marketplace add kouji-dev/kouji-ai-marketplace
 /plugin install kouji-design@kouji
+/plugin install kouji-demo-making@kouji   # optional: the demo videos pipeline, no dependencies
 ```
 
 Installing `kouji-design` installs `design@knowledge-work-plugins`, `engineering@knowledge-work-plugins` and
@@ -58,10 +60,11 @@ the marketplaces and the plugin:
 ```
 .claude-plugin/marketplace.json          # the marketplace: name "kouji", its plugins, the marketplaces they may depend on
 plugins/
-└── kouji-design/
-    ├── .claude-plugin/plugin.json       # the plugin manifest and its dependencies
-    ├── skills/<name>/SKILL.md           # one folder per skill
-    └── templates/                       # files the skills copy into a project
+├── kouji-design/
+│   ├── .claude-plugin/plugin.json       # the plugin manifest and its dependencies
+│   ├── skills/<name>/SKILL.md           # one folder per skill
+│   └── templates/                       # files the skills copy into a project
+└── kouji-demo-making/                   # the videos pipeline under videos/, its skill, package.json
 ```
 
 ## Add a plugin

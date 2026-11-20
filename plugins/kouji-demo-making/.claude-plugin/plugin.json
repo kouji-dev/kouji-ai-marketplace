@@ -1,0 +1,21 @@
+{
+  "name": "kouji-demo-making",
+  "version": "0.1.0",
+  "displayName": "Kouji Demo Making",
+  "description": "Spoken demo videos from YAML scripts: a terminal or a web page recorded for real, captions, a voice, a sound bed and effects, composed into docs clips, daily showcases and launch films.",
+  "author": {
+    "name": "Kouji",
+    "url": "https://github.com/kouji-dev"
+  },
+  "homepage": "https://github.com/kouji-dev/kouji-ai-marketplace/tree/main/plugins/kouji-demo-making",
+  "repository": "https://github.com/kouji-dev/kouji-ai-marketplace",
+  "keywords": [
+    "video",
+    "demo",
+    "screencast",
+    "vhs",
+    "playwright",
+    "voice-over",
+    "hyperframes"
+  ]
+}

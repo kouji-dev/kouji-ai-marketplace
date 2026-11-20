@@ -7,7 +7,7 @@
   },
   "metadata": {
     "description": "Kouji's Claude plugins: the house rules for how we design and build, shared by every project.",
-    "version": "0.2.1"
+    "version": "0.3.0"
   },
   "allowCrossMarketplaceDependenciesOn": [
     "knowledge-work-plugins",
@@ -28,6 +28,22 @@
         "claude-design"
       ],
       "version": "0.2.1"
+    },
+    {
+      "name": "kouji-demo-making",
+      "source": "./plugins/kouji-demo-making",
+      "description": "Spoken demo videos from YAML scripts: a terminal or a web page recorded for real, captions, a voice, a sound bed and effects, composed into docs clips, daily showcases and launch films.",
+      "category": "productivity",
+      "keywords": [
+        "video",
+        "demo",
+        "screencast",
+        "vhs",
+        "playwright",
+        "voice-over",
+        "hyperframes"
+      ],
+      "version": "0.1.0"
     }
   ]
 }

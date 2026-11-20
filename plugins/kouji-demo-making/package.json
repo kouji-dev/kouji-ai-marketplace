@@ -1,0 +1,23 @@
+{
+  "name": "demo-making-pipeline",
+  "private": true,
+  "type": "module",
+  "description": "The videos pipeline this plugin ships: node videos/pipeline/cli.mjs <check|render|preview|stale|doctor>.",
+  "scripts": {
+    "videos:check": "node videos/pipeline/cli.mjs check",
+    "videos:render": "node videos/pipeline/cli.mjs render",
+    "videos:preview": "node videos/pipeline/cli.mjs preview",
+    "videos:stale": "node videos/pipeline/cli.mjs stale",
+    "videos:doctor": "node videos/pipeline/cli.mjs doctor",
+    "test": "node --test videos/pipeline/test/pipeline.test.mjs"
+  },
+  "dependencies": {
+    "yaml": "^2.9.1",
+    "ajv": "^8.20.0",
+    "@playwright/test": "1.61.0",
+    "playwright-recast": "0.23.0"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

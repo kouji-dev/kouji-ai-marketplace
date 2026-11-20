@@ -1,0 +1,474 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://getorrery.dev/schemas/video.json",
+  "title": "Orrery video script (videos/scripts/**/video.yaml, plan 20)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "kind",
+    "title"
+  ],
+  "properties": {
+    "kind": {
+      "enum": [
+        "demo",
+        "showcase",
+        "launch"
+      ],
+      "description": "demo: a docs clip, voiced, with the shared sound. showcase: voiced, 3 aspects. launch: cards, voice, music."
+    },
+    "title": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 80
+    },
+    "docs": {
+      "type": "string",
+      "pattern": "^[a-z-]+/[a-z0-9-]+\\.md$",
+      "description": "The docs-site page that embeds the clip (demo only)."
+    },
+    "world": {
+      "$ref": "#/definitions/world"
+    },
+    "voice": {
+      "description": "Kokoro voice for a showcase: a name (af_heart) or { name, speed }. hyperframes tts --list names them.",
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "name"
+          ],
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "speed": {
+              "type": "number",
+              "minimum": 0.5,
+              "maximum": 2
+            }
+          }
+        }
+      ]
+    },
+    "music": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "track"
+      ],
+      "properties": {
+        "track": {
+          "type": "string",
+          "pattern": "^shared/music/[A-Za-z0-9._-]+\\.(mp3|wav|m4a)$"
+        },
+        "under-voice": {
+          "type": "string",
+          "pattern": "^-\\d{1,2}dB$"
+        }
+      },
+      "description": "A launch only: a licensed track (with <name>.licence.md beside it) under the whole video, at under-voice (default -18dB)."
+    },
+    "uses": {
+      "type": "string",
+      "pattern": "^demos/[a-z0-9-]+$",
+      "description": "A showcase built on a demo: its world and steps; its captioned beats are spoken by say:."
+    },
+    "hook": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "text"
+      ],
+      "properties": {
+        "text": {
+          "type": "string",
+          "maxLength": 60
+        },
+        "say": {
+          "type": "string",
+          "maxLength": 200
+        }
+      },
+      "description": "The opening card: its title, and the line spoken over it."
+    },
+    "say": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 2,
+        "maxLength": 200
+      },
+      "description": "With uses: one spoken line per captioned beat of the demo, in order."
+    },
+    "end": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "text"
+      ],
+      "properties": {
+        "text": {
+          "type": "string",
+          "maxLength": 60
+        },
+        "say": {
+          "type": "string",
+          "maxLength": 200
+        }
+      },
+      "description": "The closing card: the wordmark, this text, and the line spoken over it."
+    },
+    "post": {
+      "type": "string",
+      "maxLength": 280,
+      "description": "The text to post with the video (X takes 280 characters). Written next to the render; never posted by the pipeline."
+    },
+    "motion": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+\\.html$",
+      "description": "A launch made as motion design: this page beside the script (HTML and GSAP, a HyperFrames composition) is the video. Its beats come from beats:, its footage from the terminal scenes by id. 16:9 only."
+    },
+    "beats": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$",
+            "description": "The page times every element with data-beat=\"<id>\" from it."
+          },
+          "say": {
+            "type": "string",
+            "description": "Spoken over the beat; the beat lasts this line, a lead and a tail."
+          },
+          "min": {
+            "type": "string",
+            "pattern": "^\\d+(\\.\\d+)?(ms|s)$",
+            "description": "The beat lasts at least this long: 2.5s."
+          }
+        }
+      },
+      "description": "With motion: the beats in order, each with its line."
+    },
+    "stills": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "board"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]*$",
+            "description": "The shot is <id>.png beside the page; window.STILLS.<id> holds the board's size and the boxes asked for."
+          },
+          "board": {
+            "type": "string",
+            "pattern": "^[a-z0-9-]+/[a-z0-9-]+(#[a-z0-9-]+)?$",
+            "description": "An app page in design/, without .dc.html, and its section (#app when left out): ade/ade, ade/ade#needs-you."
+          },
+          "start": {
+            "type": "string",
+            "description": "The state the section's prototype opens at, drawn still (its start property): agent, session, home, push, consent."
+          },
+          "size": {
+            "type": "string",
+            "pattern": "^[0-9]+x[0-9]+$",
+            "description": "The shot's size in CSS pixels, when it is not the page's own: 390x844 for the phone."
+          },
+          "click": {
+            "type": "string",
+            "description": "A button clicked before the shot, by its name: Allow once."
+          },
+          "text": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Text replaced on the board before the shot: { VECTORGP66: workstation }."
+          },
+          "hide": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Parts hidden before the shot, by Playwright selector (CSS, or text=…)."
+          },
+          "find": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Boxes the page needs, by name: { rows: .rail-row } gives STILLS.<id>.find.rows = [[x, y, w, h], …] in board pixels."
+          }
+        }
+      },
+      "description": "With motion: the ADE, Cloud and phone as shots of their design/ boards, taken at 2x when the video renders."
+    },
+    "scenes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/definitions/scene"
+      }
+    }
+  },
+  "definitions": {
+    "world": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "home": {
+          "type": "string",
+          "description": "A preset in scripts/shared/worlds/ (fresh: every shipped extension installed)."
+        },
+        "workspace": {
+          "type": "string",
+          "description": "A sample project in scripts/shared/worlds/, copied for each take."
+        },
+        "terminal": {
+          "type": "string",
+          "pattern": "^\\d{2,3}x\\d{2,3}$",
+          "description": "Columns x rows."
+        },
+        "without": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Shipped extensions left uninstalled, for a demo that installs them."
+        },
+        "config": {
+          "type": "string",
+          "description": "TOML added to the sandbox config.toml, e.g. a [permissions] rule the clip shows. Never a provider or a key."
+        },
+        "ready": {
+          "type": "string",
+          "description": "Text the TUI shows once the session is built and idle. Default: enter send (the hint under the input)."
+        },
+        "model": {
+          "type": "string",
+          "pattern": "^[a-z0-9-]+:\\S+$",
+          "description": "The model the take calls for real, provider:model. Default anthropic:claude-haiku-5-5, on the render shell's ANTHROPIC_API_KEY (decision 0037)."
+        },
+        "replies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/reply"
+          },
+          "description": "Authored answers, in order, replayed by the fixture provider instead of a real model: no key, no cost, the same every take."
+        }
+      }
+    },
+    "reply": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "type": "string"
+        },
+        "tool": {
+          "type": "string"
+        },
+        "input": {
+          "type": "object"
+        }
+      }
+    },
+    "scene": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "setup": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/step"
+          },
+          "description": "Steps run hidden before the clip starts: an open session, a reply already on screen. No captions."
+        },
+        "terminal": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/definitions/step"
+          }
+        },
+        "app": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/definitions/step"
+          },
+          "description": "Steps in a headless browser (Playwright; recast draws the cursor and the clicks): click, fill, type, key, wait, scroll, pause."
+        },
+        "card": {
+          "enum": [
+            "hook",
+            "cta"
+          ],
+          "description": "A launch card: hook (its text as a title) or cta (the wordmark over its text)."
+        },
+        "text": {
+          "type": "string"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "say": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "uses": {
+          "type": "string",
+          "pattern": "^demos/[a-z0-9-]+$",
+          "description": "A launch scene that records a demo again: say: one line over it, or one per captioned beat."
+        },
+        "url": {
+          "type": "string",
+          "pattern": "^(/|https?://)",
+          "description": "An app scene's page: a path served from landing/ (the site as built), or an http(s) URL."
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*$",
+          "description": "With motion: the name the page plays this take by (data-take)."
+        }
+      }
+    },
+    "step": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "run": {
+          "type": "string",
+          "description": "A shell command, typed and entered. A bare `orrery` waits for the world's ready text."
+        },
+        "until": {
+          "type": "string",
+          "description": "For run: the text to wait for instead."
+        },
+        "type": {
+          "type": "string",
+          "description": "Text typed at the fixed speed."
+        },
+        "key": {
+          "type": "string",
+          "pattern": "^(Enter|Tab|Space|Backspace|Escape|Up|Down|Left|Right|PageUp|PageDown|Ctrl\\+[A-Za-z]|[a-z0-9/?])( [1-9][0-9]?)?$",
+          "description": "A key, optionally repeated: `Down 2`. A single lowercase letter is typed as that key."
+        },
+        "wait": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "object",
+              "required": [
+                "for"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "for": {
+                  "type": "string"
+                },
+                "show": {
+                  "anyOf": [
+                    {
+                      "const": "all"
+                    },
+                    {
+                      "type": "string",
+                      "pattern": "^\\d+(\\.\\d+)?(ms|s)$"
+                    }
+                  ]
+                },
+                "timeout": {
+                  "type": "string",
+                  "pattern": "^\\d+s$"
+                }
+              }
+            }
+          ],
+          "description": "Show 0.4 s, then cut to the moment this text is on screen."
+        },
+        "reply": {
+          "type": "string",
+          "pattern": "^\\d+(\\.\\d+)?(ms|s)$",
+          "description": "The agent's turn, live: cut to its start, show this much of it at real speed, then cut to its end (the hint says enter send again)."
+        },
+        "pause": {
+          "type": "string",
+          "pattern": "^\\d+(\\.\\d+)?(ms|s)$"
+        },
+        "vhs": {
+          "type": "string",
+          "description": "Raw VHS lines (escape hatch); needs `seconds:`."
+        },
+        "seconds": {
+          "type": "number",
+          "description": "For vhs: how long its visible part lasts."
+        },
+        "click": {
+          "type": "string",
+          "description": "App: click a link, button or tab by its name, else by its visible text."
+        },
+        "fill": {
+          "type": "object",
+          "description": "App: type into fields by their label: { Email: a@b.c }."
+        },
+        "caption": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 70,
+          "description": "On-screen text from this step on; null clears it."
+        },
+        "say": {
+          "type": "string"
+        },
+        "zoom": {
+          "type": "string",
+          "pattern": "^(off|target|rows \\d{1,3}-\\d{1,3}( cols \\d{1,3}-\\d{1,3})?)$",
+          "description": "Terminal: ease in on rows a-b [cols c-d]. App: target eases in on what the step clicks or fills. off eases out."
+        },
+        "scroll": {
+          "type": "number",
+          "description": "App: scroll smoothly by this many CSS pixels (negative: up)."
+        },
+        "mark": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*$",
+          "description": "With motion: a name for this moment of the take; the page starts a video there with data-from."
+        }
+      }
+    }
+  }
+}

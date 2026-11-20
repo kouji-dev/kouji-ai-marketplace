@@ -1,0 +1,4 @@
+{
+  "description": "Every extension the build ships, installed; a demo leaves some out with world.without.",
+  "install": "all"
+}
